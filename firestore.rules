@@ -1,0 +1,114 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /* ───────── helpers ───────── */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    function isSelf(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+    function isAdmin() {
+      // Admin if users/{me}.roles.admin === true
+      return isSignedIn()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles.admin == true;
+    }
+
+    /* ───────── Public config (read-only) ───────── */
+    match /config/{doc} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    /* ───────── Users (profile) ─────────
+       - Admin can read all users (for Admin UI table)
+       - Users can read their own profile
+       - Users cannot self-escalate admin role
+       - Users can only change safe profile fields
+    */
+    match /users/{uid} {
+      // Read: self or admin (allows Admin UI to list all users)
+      allow read: if isSelf(uid) || isAdmin();
+
+      // Create: self creates their own doc; cannot set roles.admin=true
+      allow create: if isSelf(uid)
+                    && request.resource.data.uid == uid
+                    && (
+                         !('roles' in request.resource.data) ||
+                         !('admin' in request.resource.data.roles) ||
+                         request.resource.data.roles.admin == false
+                       );
+
+      // Update:
+      //  - admin: full control
+      //  - self: only safe fields; cannot change roles
+      allow update: if isAdmin()
+                    || (
+                         isSelf(uid)
+                         && request.resource.data.diff(resource.data).changedKeys()
+                              .hasOnly(['displayName', 'photoURL', 'updatedAt', 'email'])
+                         && (
+                              !('roles' in request.resource.data)
+                              || request.resource.data.roles == resource.data.roles
+                            )
+                       );
+
+      // Delete: admin only
+      allow delete: if isAdmin();
+    }
+
+    /* ───────── Admin-only collections ───────── */
+    // modules (and nested items): public read, admin write
+    match /modules/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Admin-only config/logs
+    match /admin_configs/{doc=**} {
+      allow read, write: if isAdmin();
+    }
+    match /admin_logs/{doc=**} {
+      allow read, write: if isAdmin();
+    }
+
+    /* ───────── Content (learning media metadata) ───────── */
+    match /content/{id} {
+      allow read: if true;                // public browse
+      allow create, update, delete: if isAdmin();
+    }
+
+    /* ───────── OPTIONAL: admin queue pattern ─────────
+       If you adopt the Firestore queue worker (adminQueue) for deletes/edits:
+       - Admin UI enqueues jobs
+       - Cloud Function worker processes them
+       Client should NOT be able to update/delete jobs after creation.
+    */
+    match /adminQueue/{jobId} {
+      allow create: if isAdmin();    // admins can enqueue jobs
+      allow read:   if isAdmin();    // optional: so UI can watch status
+      allow update, delete: if false;
+    }
+
+    /* ───────── OTP / auth staging (client must never touch) ───────── */
+    match /pending_signups/{email} {
+      allow read, write: if false;
+    }
+    match /otpTickets/{id} {
+      allow read, write: if false;
+    }
+    match /password_resets/{id} {
+      allow read, write: if false;
+    }
+    match /regSessions/{id} {
+      allow read, write: if false;
+    }
+
+    /* ───────── Catch-all deny ───────── */
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

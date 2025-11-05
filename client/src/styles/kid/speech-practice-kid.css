@@ -1,0 +1,162 @@
+/* Kid – Speech Practice (scoped, leak-free) */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@600;800;900&display=swap");
+
+/* Palette from your image */
+:root {
+  --kid-dark: #18297c;   /* top/dark */
+  --kid-mid:  #3e3eb2;   /* middle  */
+  --kid-lite: #7b86c3;   /* bottom  */
+  --kid-ink:  #ffffff;
+  --kid-ink2: rgba(255,255,255,.9);
+}
+
+/* 0) Scope everything to kid mode AND to Speech Practice */
+body.kid .sp-page, 
+body.kid .sp-page * {
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* 1) Let the wallpaper show through */
+body.kid .sp-page { 
+  background: transparent !important;
+}
+
+/* 2) Top bar stays like normal (no color block added) */
+body.kid .sp-topbar {
+  background: transparent !important;
+  border-bottom: none !important;
+  height: 56px;                 /* matches your Sign-to-Text feel */
+  padding-left: 16px;
+}
+body.kid .sp-back-plain { color: var(--kid-dark); }
+body.kid .sp-title { font-size: 20px; font-weight: 900; color: #0f172a; }
+
+/* 3) Level segmented control (keep subtle look) */
+body.kid .sp-level-seg {
+  background: rgba(255,255,255,.85);
+  border: 1px solid rgba(62,62,178,.15);
+}
+body.kid .sp-level-seg .seg-btn.on {
+  background: #fff;
+  color: var(--kid-dark);
+  box-shadow: 0 2px 10px rgba(62,62,178,.16), inset 0 0 0 2px rgba(62,62,178,.18);
+}
+
+/* 4) Cards use solid colors (no gradients) */
+body.kid .sp-reveal {
+  background: var(--kid-lite) !important;
+  border: 1px solid rgba(0,0,0,.08) !important;
+  color: var(--kid-ink);
+}
+body.kid .sp-reveal .sp-muted { color: var(--kid-ink2); }
+body.kid .sp-reveal .sp-phrase { color: var(--kid-ink); font-weight: 900; }
+
+body.kid .sp-card {
+  background: var(--kid-mid) !important;   /* Mic / wave section */
+  border: 1px solid rgba(0,0,0,.08) !important;
+  color: var(--kid-ink);
+}
+
+body.kid .sp-result {
+  background: var(--kid-dark) !important;  /* Result section */
+  border: 1px solid rgba(0,0,0,.08) !important;
+  color: var(--kid-ink);
+}
+
+/* 5) Mic & waveform inside the mid card */
+body.kid .sp-mic {
+  background: rgba(255,255,255,.15);
+  border-color: rgba(255,255,255,.35);
+  color: var(--kid-ink);
+}
+body.kid .sp-mic.on { outline: 6px solid rgba(255,255,255,.25); }
+body.kid .sp-wave {
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.35);
+}
+body.kid .sp-wave-overlay { color: var(--kid-ink2); }
+
+/* 6) Buttons (scoped to Speech Practice) */
+body.kid .sp-pill {
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(255,255,255,.14);
+  color: var(--kid-ink);
+}
+body.kid .sp-pill.strong {
+  background: #ffb31a;       /* warm accent pops on purple */
+  color: #1d2733;
+  border-color: #ffb31a;
+}
+
+/* 7) Result bar & text */
+body.kid .sp-result-title { color: var(--kid-ink); }
+body.kid .sp-result-row span { color: var(--kid-ink); }
+body.kid .sp-bar { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.35); }
+body.kid .sp-bar-fill { background: #ffb31a; }
+
+/* 8) Chips (SCOPED – avoids Learn page conflicts) */
+body.kid .sp-page .sp-chip {
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(255,255,255,.14);
+  color: var(--kid-ink);
+}
+body.kid .sp-page .sp-chip.match { background: rgba(46,204,113,.2); border-color: rgba(46,204,113,.45); }
+body.kid .sp-page .sp-chip.sub   { background: rgba(255,193,7,.18);  border-color: rgba(255,193,7,.45); }
+body.kid .sp-page .sp-chip.miss  { background: rgba(255,99,132,.20); border-color: rgba(255,99,132,.45); }
+
+/* 9) Tips & warnings inside result */
+body.kid .sp-warning {
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.35);
+  color: var(--kid-ink);
+}
+body.kid .sp-tips { color: var(--kid-ink); }
+body.kid .sp-note { color: var(--kid-ink2); }
+
+/* 10) Modal (drill) keeps white for readability */
+body.kid .sp-modal-card { border-radius: 16px; }
+
+/* 11) Focus ring */
+body.kid :where(button, .sp-reveal, .seg-btn, .sp-pill):focus-visible {
+  outline: 2px solid var(--kid-lite);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
+/* --- Fix: header should scroll with content (no sticky/fixed) --- */
+body.kid .sp-page .sp-topbar {
+  position: static !important;   /* ensure it’s not sticky/fixed */
+  inset: auto !important;
+  z-index: auto !important;
+}
+
+/* --- Improve readability on dark cards/sections --- */
+body.kid .sp-page .sp-reveal,
+body.kid .sp-page .sp-card,
+body.kid .sp-page .sp-result {
+  color: rgba(255,255,255,.95) !important;
+}
+
+body.kid .sp-page .sp-reveal *:not(.sp-chip),
+body.kid .sp-page .sp-card   *:not(.sp-chip),
+body.kid .sp-page .sp-result *:not(.sp-chip) {
+  color: rgba(255,255,255,.92) !important;   /* brighter text */
+}
+
+/* labels / helper text a touch softer for hierarchy */
+body.kid .sp-page .sp-muted,
+body.kid .sp-page .sp-note {
+  color: rgba(255,255,255,.8) !important;
+}
+
+/* Make “Result / scoring” area pop a bit more */
+body.kid .sp-page .sp-result .sp-panel,
+body.kid .sp-page .sp-result .sp-block {
+  background: rgba(255,255,255,.08) !important;
+  border: 1px solid rgba(255,255,255,.28) !important;
+  border-radius: 10px !important;
+}
+
+/* Ensure the progress bar is visible on dark bg */
+body.kid .sp-page .sp-bar      { background: rgba(255,255,255,.20) !important; }
+body.kid .sp-page .sp-bar-fill { background: #FFB31A !important; }

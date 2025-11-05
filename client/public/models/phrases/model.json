@@ -1,0 +1,332 @@
+{
+  "format": "layers-model",
+  "generatedBy": "keras v2.10.0",
+  "convertedBy": "TensorFlow.js Converter v3.9.0",
+  "modelTopology": {
+    "keras_version": "2.10.0",
+    "backend": "tensorflow",
+    "model_config": {
+      "class_name": "Functional",
+      "config": {
+        "name": "model_1",
+        "layers": [
+          {
+            "class_name": "InputLayer",
+            "config": {
+              "batch_input_shape": [
+                null,
+                63
+              ],
+              "dtype": "float32",
+              "sparse": false,
+              "ragged": false,
+              "name": "landmarks"
+            },
+            "name": "landmarks",
+            "inbound_nodes": []
+          },
+          {
+            "class_name": "Dense",
+            "config": {
+              "name": "dense_3",
+              "trainable": true,
+              "dtype": "float32",
+              "units": 256,
+              "activation": "relu",
+              "use_bias": true,
+              "kernel_initializer": {
+                "class_name": "GlorotUniform",
+                "config": {
+                  "seed": null
+                }
+              },
+              "bias_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "kernel_regularizer": {
+                "class_name": "L1L2",
+                "config": {
+                  "l1": 0,
+                  "l2": 0.000009999999747378752
+                }
+              },
+              "bias_regularizer": null,
+              "activity_regularizer": null,
+              "kernel_constraint": null,
+              "bias_constraint": null
+            },
+            "name": "dense_3",
+            "inbound_nodes": [
+              [
+                [
+                  "landmarks",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ]
+          },
+          {
+            "class_name": "Dropout",
+            "config": {
+              "name": "dropout_2",
+              "trainable": true,
+              "dtype": "float32",
+              "rate": 0.3,
+              "noise_shape": null,
+              "seed": null
+            },
+            "name": "dropout_2",
+            "inbound_nodes": [
+              [
+                [
+                  "dense_3",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ]
+          },
+          {
+            "class_name": "Dense",
+            "config": {
+              "name": "dense_4",
+              "trainable": true,
+              "dtype": "float32",
+              "units": 128,
+              "activation": "relu",
+              "use_bias": true,
+              "kernel_initializer": {
+                "class_name": "GlorotUniform",
+                "config": {
+                  "seed": null
+                }
+              },
+              "bias_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "kernel_regularizer": {
+                "class_name": "L1L2",
+                "config": {
+                  "l1": 0,
+                  "l2": 0.000009999999747378752
+                }
+              },
+              "bias_regularizer": null,
+              "activity_regularizer": null,
+              "kernel_constraint": null,
+              "bias_constraint": null
+            },
+            "name": "dense_4",
+            "inbound_nodes": [
+              [
+                [
+                  "dropout_2",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ]
+          },
+          {
+            "class_name": "Dropout",
+            "config": {
+              "name": "dropout_3",
+              "trainable": true,
+              "dtype": "float32",
+              "rate": 0.3,
+              "noise_shape": null,
+              "seed": null
+            },
+            "name": "dropout_3",
+            "inbound_nodes": [
+              [
+                [
+                  "dense_4",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ]
+          },
+          {
+            "class_name": "Dense",
+            "config": {
+              "name": "dense_5",
+              "trainable": true,
+              "dtype": "float32",
+              "units": 8,
+              "activation": "softmax",
+              "use_bias": true,
+              "kernel_initializer": {
+                "class_name": "GlorotUniform",
+                "config": {
+                  "seed": null
+                }
+              },
+              "bias_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "kernel_regularizer": null,
+              "bias_regularizer": null,
+              "activity_regularizer": null,
+              "kernel_constraint": null,
+              "bias_constraint": null
+            },
+            "name": "dense_5",
+            "inbound_nodes": [
+              [
+                [
+                  "dropout_3",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ]
+          }
+        ],
+        "input_layers": [
+          [
+            "landmarks",
+            0,
+            0
+          ]
+        ],
+        "output_layers": [
+          [
+            "dense_5",
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    "training_config": {
+      "loss": "sparse_categorical_crossentropy",
+      "metrics": [
+        [
+          {
+            "class_name": "MeanMetricWrapper",
+            "config": {
+              "name": "accuracy",
+              "dtype": "float32",
+              "fn": "sparse_categorical_accuracy"
+            }
+          }
+        ]
+      ],
+      "weighted_metrics": null,
+      "loss_weights": null,
+      "optimizer_config": {
+        "class_name": "Adam",
+        "config": {
+          "name": "Adam",
+          "learning_rate": 0.0001250000059371814,
+          "decay": 0,
+          "beta_1": 0.8999999761581421,
+          "beta_2": 0.9990000128746033,
+          "epsilon": 1e-7,
+          "amsgrad": false
+        }
+      }
+    }
+  },
+  "weightsManifest": [
+    {
+      "paths": [
+        "group1-shard1of1.bin"
+      ],
+      "weights": [
+        {
+          "name": "dense_3/kernel",
+          "shape": [
+            63,
+            256
+          ],
+          "dtype": "float32",
+          "quantization": {
+            "dtype": "uint8",
+            "min": -0.22733567158381143,
+            "scale": 0.001910383794821945,
+            "original_dtype": "float32"
+          }
+        },
+        {
+          "name": "dense_3/bias",
+          "shape": [
+            256
+          ],
+          "dtype": "float32",
+          "quantization": {
+            "dtype": "uint8",
+            "min": -0.05343753975980422,
+            "scale": 0.00044531283133170184,
+            "original_dtype": "float32"
+          }
+        },
+        {
+          "name": "dense_4/kernel",
+          "shape": [
+            256,
+            128
+          ],
+          "dtype": "float32",
+          "quantization": {
+            "dtype": "uint8",
+            "min": -0.26884889742907353,
+            "scale": 0.0020367340714323753,
+            "original_dtype": "float32"
+          }
+        },
+        {
+          "name": "dense_4/bias",
+          "shape": [
+            128
+          ],
+          "dtype": "float32",
+          "quantization": {
+            "dtype": "uint8",
+            "min": -0.021623243829783274,
+            "scale": 0.0003003228309692121,
+            "original_dtype": "float32"
+          }
+        },
+        {
+          "name": "dense_5/kernel",
+          "shape": [
+            128,
+            8
+          ],
+          "dtype": "float32",
+          "quantization": {
+            "dtype": "uint8",
+            "min": -0.3108278414782356,
+            "scale": 0.002506676140953513,
+            "original_dtype": "float32"
+          }
+        },
+        {
+          "name": "dense_5/bias",
+          "shape": [
+            8
+          ],
+          "dtype": "float32",
+          "quantization": {
+            "dtype": "uint8",
+            "min": -0.04527352303266525,
+            "scale": 0.00029021489123503365,
+            "original_dtype": "float32"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "name": "client",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:vercel": "cross-env USE_VERCEL=1 vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "postinstall": "node ./scripts/patch-tfjs-tflite.js",
+    "postupdate": "node ./scripts/patch-tfjs-tflite.js"
+  },
+  "dependencies": {
+    "@mediapipe/camera_utils": "^0.3.1675466862",
+    "@mediapipe/drawing_utils": "^0.3.1675466124",
+    "@mediapipe/hands": "^0.4.1675469240",
+    "@tensorflow/tfjs": "^4.22.0",
+    "@tensorflow/tfjs-backend-cpu": "4.9.0",
+    "@tensorflow/tfjs-backend-webgl": "4.9.0",
+    "@tensorflow/tfjs-converter": "4.9.0",
+    "@tensorflow/tfjs-core": "4.9.0",
+    "@tensorflow/tfjs-tflite": "^0.0.1-alpha.8",
+    "firebase": "^10.12.0",
+    "fuse.js": "^7.1.0",
+    "long": "5.2.3",
+    "lucide-react": "^0.544.0",
+    "protobufjs": "7.2.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.26.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "cross-env": "^7.0.3",
+    "vite": "^7.1.5"
+  },
+  "overrides": {
+    "@tensorflow/tfjs-core": "4.9.0",
+    "@tensorflow/tfjs-converter": "4.9.0",
+    "@tensorflow/tfjs-backend-webgl": "4.9.0",
+    "@tensorflow/tfjs-backend-cpu": "4.9.0"
+  }
+}

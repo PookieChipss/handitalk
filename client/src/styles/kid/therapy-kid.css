@@ -1,0 +1,198 @@
+/* src/styles/kid/therapy-kid.css
+   Kid mode — Therapy page only (scoped header)  */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800;900&display=swap");
+
+/* ---------- Kid palette ---------- */
+body.kid{
+  --kdk-dark:   #9B5DE0;   /* therapy header / primary purple */
+  --kdk-mid:    #8C5ADD;   /* card purple */
+  --kdk-light:  #D492F0;   /* accent purple */
+  --kdk-ink:    #ffffff;
+  --kdk-ink2:   rgba(255,255,255,.9);
+  --kdk-stroke: rgba(255,255,255,.35);
+}
+
+body.kid, body.kid *{
+  font-family:"Outfit",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+
+/* ---------- Page background (show wallpaper) ---------- */
+body.kid .therapy-page{ background:transparent !important; }
+body.kid .therapy-main.calm{ background:none !important; }
+
+/* =======================================================
+   THERAPY HEADER ONLY
+   (Do NOT touch sp-topbar / tts-header / home-header)
+   ======================================================= */
+body.kid .therapy-page > header.learn-top,
+body.kid .therapy-page header.learn-top {
+  background: var(--kdk-dark) !important;
+  color:#fff !important;
+  border-bottom:none !important;
+  box-shadow:none !important;
+
+  /* keep consistent size */
+  height:60px !important;
+  padding:0 16px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  z-index: 5;
+}
+
+/* Make items inside the Therapy header white */
+body.kid .therapy-page header.learn-top * {
+  color:#ffffff !important;
+  background:transparent !important;
+  border:0 !important;
+}
+
+body.kid .therapy-page header.learn-top .brand-name{
+  color:#ffffff !important;
+  font-weight:900;
+}
+
+/* never auto-invert/tint the logo in therapy header */
+body.kid .therapy-page header.learn-top .brand-logo{
+  filter:none !important;
+  mix-blend-mode:normal !important;
+}
+
+/* ensure profile icon tracks white via currentColor */
+body.kid .therapy-page header.learn-top .profile-btn svg{
+  display:block;
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+/* ---------- Content headings ---------- */
+body.kid .t-title{ color:#0F172A; }
+body.kid .t-sub{ color:#4C5A67; }
+
+/* ---------- Daily Goal (light purple card) ---------- */
+body.kid .t-card.t-goal{
+  background:var(--kdk-light) !important;
+  border:1px solid var(--kdk-stroke) !important;
+  color:var(--kdk-ink);
+  border-radius:16px;
+  box-shadow:0 8px 18px rgba(0,0,0,.10);
+}
+body.kid .t-goal-title,
+body.kid .t-goal-count{ color:var(--kdk-ink); }
+body.kid .t-goal-bar{ background:rgba(255,255,255,.35); border:1px solid var(--kdk-stroke); }
+body.kid .t-goal-fill{ background:var(--kdk-dark); }
+body.kid .t-goal-sub{ color:var(--kdk-ink); }
+
+/* ---------- Mode container & controls ---------- */
+body.kid .t-setup.bare{
+  background:var(--kdk-mid) !important;
+  border:1px solid var(--kdk-stroke) !important;
+  border-radius:16px;
+  padding:14px;
+  color:var(--kdk-ink);
+}
+body.kid .t-row-title{ color:var(--kdk-ink); }
+
+body.kid .icon-btn{
+  color:var(--kdk-ink) !important;
+  background:transparent !important;
+  border:1px solid var(--kdk-stroke) !important;
+}
+
+/* Mode buttons */
+body.kid .t-mode-grid.two{ gap:12px; }
+
+/* UNSELECTED */
+body.kid .t-mode-btn{
+  background:var(--kdk-mid) !important;
+  border:1px solid var(--kdk-stroke) !important;
+  color:var(--kdk-ink) !important;
+  border-radius:14px; padding:12px; text-align:center; place-items:center;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.18);
+}
+
+/* SELECTED */
+body.kid .t-mode-btn.on{
+  background:var(--kdk-light) !important;
+  border-color:var(--kdk-light) !important;
+  box-shadow: 0 0 0 2px var(--kdk-light);
+}
+
+body.kid .t-mode-ico{
+  width:36px; height:36px; display:grid; place-items:center;
+  border-radius:12px; background:rgba(255,255,255,.18); color:var(--kdk-ink);
+}
+body.kid .t-mode-name{ color:var(--kdk-ink); font-weight:900; margin-top:8px; }
+body.kid .t-mode-desc{ color:var(--kdk-ink2); font-size:12px; margin-top:4px; }
+
+/* Banner inside mode card */
+body.kid .t-banner{
+  background:transparent !important;
+  border:1px solid var(--kdk-stroke) !important;
+  color:var(--kdk-ink);
+  border-radius:14px;
+}
+body.kid .t-banner-ico{ background:rgba(255,255,255,.18); }
+body.kid .t-banner-title{ color:var(--kdk-ink); }
+body.kid .t-banner-sub{ color:var(--kdk-ink2); }
+
+/* ---------- Start practice CTA ---------- */
+body.kid .t-cta.big{
+  background:var(--kdk-dark) !important;
+  color:#fff !important;
+  border:none !important;
+  border-radius:14px !important;
+  box-shadow:0 8px 18px rgba(155,93,224,.35) !important;
+}
+body.kid .t-cta.big:hover{ transform: translateY(-1px); }
+body.kid .t-cta.big:active{ transform: translateY(0); }
+
+/* ---------- Last Practice card ---------- */
+body.kid .t-card.t-last-card{
+  background:var(--kdk-mid) !important;
+  border:1px solid var(--kdk-stroke) !important;
+  border-radius:16px !important;
+  color:var(--kdk-ink);
+  margin-top:12px;
+}
+body.kid .t-last-title,
+body.kid .t-last-card *{ color:var(--kdk-ink); }
+body.kid .t-badge{
+  background:rgba(255,255,255,.18);
+  border:1px solid var(--kdk-stroke);
+  color:var(--kdk-ink);
+}
+body.kid .t-last-grid .kv{
+  background:rgba(255,255,255,.10);
+  border:1px solid var(--kdk-stroke);
+  border-radius:10px;
+  padding:8px 10px;
+}
+body.kid .t-last-grid .kv span{ color:var(--kdk-ink2); }
+body.kid .t-last-grid .kv .chip{
+  background:rgba(255,255,255,.18);
+  border:1px solid var(--kdk-stroke);
+  color:var(--kdk-ink);
+}
+
+/* “See details” button */
+body.kid .t-ghost{
+  background:var(--kdk-light);
+  border:1px solid var(--kdk-light);
+  color:var(--kdk-ink);
+  border-radius:12px;
+  text-decoration:none;
+  display:inline-block;
+}
+
+/* Focus ring */
+body.kid :where(button, a, .t-mode-btn, .icon-btn):focus-visible{
+  outline:2px solid var(--kdk-light); outline-offset:2px; border-radius:12px;
+}
+
+/* Therapy header profile icon: outline only (no solid fill) */
+body.kid .therapy-page .learn-top .profile-btn svg,
+body.kid .therapy-page .learn-top .profile-btn svg * {
+  fill: none !important;              /* remove unwanted white fill */
+  stroke: currentColor !important;     /* keep white stroke from header color */
+}

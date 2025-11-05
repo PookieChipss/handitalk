@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <title>HandiTalk</title>
+
+    <!-- YouTube (unchanged) -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- TensorFlow.js core (must be global on window.tf) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.21.0/dist/tf.min.js"></script>
+
+    <!-- tfjs-tflite runtime (global on window.tflite) -->
+    <!-- Place these files in: client/public/libs/tflite/ -->
+    <!-- Required files in that folder:
+         tf-tflite.min.js
+         tflite_web_api_cc.wasm
+         tflite_web_api_cc_simd.wasm
+         tflite_web_api_cc_threaded_simd.wasm  (some builds name this)
+         tflite_web_api_cc_simd_threaded.wasm  (or this; keep the one you actually have)
+         tflite_web_api_cc_threaded_simd.worker
+         tflite_web_api_cc_simd_threaded.worker
+    -->
+    <script src="/libs/tflite/tf-tflite.min.js"></script>
+    <script>
+      // If your wasm files are in /libs/tflite/, point tfjs-tflite there:
+      if (window.tflite && typeof window.tflite.setWasmPath === "function") {
+        window.tflite.setWasmPath("/libs/tflite/");
+      }
+    </script>
+
+    <!-- MediaPipe Hands (classic) -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+
+    <style>
+      :root { --bg:#F7F7FB; --ink:#1A1E2E; }
+      html, body, #root { height: 100%; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Outfit", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Vite boot -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

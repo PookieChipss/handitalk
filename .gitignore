@@ -1,0 +1,40 @@
+# Node / Frontend
+node_modules/
+dist/
+build/
+.vite/
+.vercel/
+coverage/
+*.log
+
+# Python / tooling
+.venv/
+venv/
+__pycache__/
+*.pyc
+tfjsconv/
+tfjsclean/
+
+# Firebase
+.firebase/
+firebase-debug.log
+
+# IDE
+.vscode/
+.idea/
+
+# Secrets (env files) — keep only examples tracked
+.env
+.env.*
+!.env.example
+client/.env*
+!client/.env.example
+
+# Models / checkpoints (use LFS if needed)
+*.tflite
+*.h5
+*.pt
+*.onnx
+
+# Local eval outputs
+client/public/models/eval_out/

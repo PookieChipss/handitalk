@@ -1,0 +1,19 @@
+/* src/styles/kid/learn-category-kid.css */
+/* Only-run-in-kid-mode overrides for the Learn page. */
+
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800;900&display=swap");
+
+/* Kid: change the big content card color */
+body.kid .big-card{
+  background:#FDCFFA;
+  border:1px solid #e6baff;
+}
+
+/* Kid: make the progress bar orange */
+body.kid .progress-line > div{
+  background:#FFA928;
+}
+
+/* Optional: accent the back arrow in kid mode
+body.kid .back-inline { color:#4b2f8f; }
+*/

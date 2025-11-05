@@ -1,0 +1,71 @@
+/* src/pages/sign-to-text.css */
+:root{
+  --bg:#F7F7FB; --ink:#1A1E2E; --muted:#6B7280;
+  --card:#FFFFFF; --line:#E6E6EF;
+  --brand:#5B6BFF; --brand-ink:#FFF;
+  --danger:#F05959; --chip:#0E1625;
+}
+
+.stt-page{padding:16px 16px 88px;background:var(--bg);min-height:100svh;color:var(--ink)}
+.stt-header{display:flex;align-items:center;gap:8px;margin:4px 0 12px}
+.stt-header .back{background:none;border:none;font-size:20px;cursor:pointer}
+.stt-title{font-size:22px;font-weight:700;margin:0}
+
+.stage.card{padding:10px}
+.stage-inner{
+  position:relative; aspect-ratio:16/9;
+  background:#E8EAFB;
+  border-radius:12px; overflow:hidden;
+}
+.stage-inner video,.stage-inner canvas{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:contain;
+}
+.stage .chip{
+  position:absolute; left:10px; bottom:10px;
+  background:#0E1625DE; color:#E8EEF6;
+  border:2px solid #1f2a3a; border-radius:10px;
+  padding:6px 8px; font-weight:700
+}
+
+/* mode buttons (Fingerspelling / Phrases) */
+.mode-tabs{display:flex;gap:10px;margin-top:10px}
+.mode-tabs .tab{
+  flex:1; padding:10px 12px; border-radius:12px;
+  border:2px solid #0F1530; background:#EEF0FF; cursor:pointer;
+  font-weight:600; text-align:center;
+}
+.mode-tabs .tab.active{background:#dfe3ff}
+
+.panel.card{padding:12px}
+.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.panel h2{margin:0;font-size:16px}
+.panel .icons{display:flex;gap:8px}
+.icon{
+  background:#F2F3FF;border:1px solid var(--line);
+  border-radius:10px;padding:8px;cursor:pointer
+}
+
+.out{
+  width:100%; min-height:120px; max-height:240px; resize:vertical;
+  border:1px solid var(--line); border-radius:12px;
+  background:#FAFAFF; padding:10px; margin-bottom:10px
+}
+
+.row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.status{color:var(--muted);font-size:12px}
+.checkbox{display:flex;align-items:center;gap:8px;margin:6px 0 10px}
+
+/* segmented toggle (Free / Auto) */
+.segmented{display:flex;gap:10px;margin-bottom:10px}
+.seg{flex:1;padding:12px;border-radius:12px;border:3px solid #0F1530;background:#E6E6FF;font-weight:700;text-align:center;cursor:pointer;user-select:none}
+.seg.sel{background:#5B6BFF;color:#fff}
+
+/* action grids */
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* Slight glow to landmarks so lines look brighter */
+.stage-inner canvas{filter: drop-shadow(0 0 1px #fff)}
+@media (min-width:700px){ .stt-page{max-width:720px;margin:0 auto} }
+
+

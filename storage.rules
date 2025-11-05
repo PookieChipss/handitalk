@@ -1,0 +1,13 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isSignedIn() { return request.auth != null; }
+    function isAdmin() { return isSignedIn() && request.auth.token.admin == true; }
+
+    // Admin uploads (videos, thumbnails, models)
+    match /admin_uploads/{allPaths=**} {
+      allow read: if true;         // or change to isSignedIn() if you want gated reads
+      allow write: if isAdmin();   // only admins can upload/modify
+    }
+  }
+}

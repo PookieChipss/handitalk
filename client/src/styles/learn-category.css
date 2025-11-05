@@ -1,0 +1,123 @@
+/* Page scaffold */
+body:not(.kid) .cat-page{
+  width: min(100%, 1200px);                  /* was max-width:430px */
+  margin: 0 auto;
+  padding-bottom: calc(90px + env(safe-area-inset-bottom));
+  min-height: 100dvh;
+  font-family:"Outfit", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background:#F3F7FF;                        /* soft blue like Therapy page */
+}
+
+/* Back + Title row (no border around back) */
+.cat-h1row{
+  display:flex; align-items:center; gap:10px;
+  padding: 10px clamp(12px, 2.2vw, 16px) 0;
+}
+.back-inline{
+  all:unset; cursor:pointer; display:inline-grid; place-items:center;
+  width:32px; height:32px; border-radius:999px;
+  background:transparent; color:var(--ink,#222);   /* no border */
+}
+.cat-h1{
+  margin:0;
+  font-weight:800;
+  font-size: clamp(20px, 2.6vw, 24px);              /* fluid title */
+  color:var(--ink,#222);
+}
+
+/* Subtitle — extra space below title */
+.cat-sub{
+  margin:12px clamp(12px, 2.2vw, 16px) 0;
+  color:#7b7f92; font-size:13px;
+}
+
+/* Pills */
+.pill-grid{
+  padding:10px clamp(12px, 2.2vw, 16px) 0;
+  display:grid;
+  grid-template-columns: repeat(4, minmax(64px,1fr)); /* phones default */
+  gap:12px 10px;
+}
+.pill{
+  display:flex; align-items:center; justify-content:center;
+  padding:10px 12px; min-height: clamp(42px, 5vw, 48px);
+  background:#F0ECFF; color:#5a53d6; border:1px solid #e5e1ff;
+  border-radius:14px; font-weight:700; box-shadow:0 1px 0 rgba(0,0,0,.02);
+  text-align:center; line-height:1.05;
+}
+.pill.is-active{ background:#DFE3FF; border-color:#C8CDFF; color:#2f3dbd; }
+.pill.is-done{ background:#e9f8ee; color:#2a7d46; border-color:#ccefd8; }
+
+/* Big card (NORMAL: white) – centered and wider on larger screens */
+.big-card{
+  width: min(100%, 720px);
+  margin:14px auto;                               /* center the card */
+  padding: clamp(10px, 2vw, 14px);
+  background:#fff;
+  border:1px solid #ececf2; border-radius:16px; box-shadow:0 2px 6px rgba(17, 17, 26, .05);
+}
+.big-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px; }
+.media-title{ font-weight:800; font-size:16px; display:flex; align-items:center; gap:8px; }
+.badge-done{ display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; border-radius:50%; background:#e9f8ee; color:#2a7d46; font-weight:800; font-size:12px; }
+
+/* Segmented */
+.segmented{ display:inline-flex; gap:6px; padding:2px; border:1px solid #e6e7ef; border-radius:999px; background:#fff; }
+.segmented button{ all:unset; cursor:pointer; padding:6px 10px; border-radius:999px; font-weight:700; font-size:13px; color:#59607a; }
+.segmented button.on{ background:#eef1ff; color:#2e3bcf; border:1px solid #dfe3ff; }
+
+/* Media surface */
+.media-surface{ margin-top:6px; }
+.media-area{ width:100%; display:flex; align-items:center; justify-content:center; }
+
+/* Images scale smoothly */
+.media-area.is-image .media-img{
+  width: clamp(200px, 36vw, 320px);
+  max-width:100%;
+  height: clamp(200px, 36vw, 320px);
+  object-fit:contain;
+  background:#fafbff; border:1px solid #edefff; border-radius:14px; padding:10px;
+}
+
+/* Video is full-width with fixed aspect */
+.media-area.is-video .media-video{
+  width:100%; max-width:100%;
+  aspect-ratio:16/9;
+  border-radius:14px; outline:none; background:#000;
+}
+
+/* Placeholder keeps proportion */
+.media-placeholder{
+  width: clamp(200px, 36vw, 320px);
+  height: clamp(150px, 27vw, 240px);
+  border-radius:12px; border:1px dashed #dcdff3; color:#9aa0b4;
+  display:flex; align-items:center; justify-content:center;
+}
+
+/* Speak row */
+.speak-row{ margin-top:10px; display:flex; align-items:center; gap:10px; flex-wrap: wrap; }
+.speak-btn{ all:unset; cursor:pointer; padding:8px 10px; border-radius:12px; background:#eef1ff; border:1px solid #e0e5ff; color:#3b49df; }
+.hint{ font-size:12px; color:#8a8fa7; }
+
+/* Progress (NORMAL: blue) */
+.percent-foot{ margin-top:12px; display:flex; align-items:center; gap:8px; }
+.progress-line{ flex:1; height:6px; border-radius:999px; background:#f0f2f8; overflow:hidden; }
+.progress-line>div{ height:100%; background:#3b49df; border-radius:999px; }  /* blue */
+.progress-label{ font-size:12px; color:#7b7f92; }
+
+/* Small phones */
+@media (max-width:380px){
+  .pill-grid{ grid-template-columns: repeat(3, minmax(66px,1fr)); }
+  .media-area.is-image .media-img{ width:200px; height:200px; }
+}
+
+/* Tablets */
+@media (min-width:768px){
+  .pill-grid{ grid-template-columns: repeat(6, minmax(64px,1fr)); }  /* 6 across */
+  .big-card{ width: min(100%, 880px); }
+}
+
+/* Large desktop */
+@media (min-width:1200px){
+  .pill-grid{ grid-template-columns: repeat(8, minmax(64px,1fr)); }  /* 8 across */
+  .big-card{ width: min(100%, 980px); }
+}

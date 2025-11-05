@@ -1,0 +1,149 @@
+/* src/styles/kid/text-to-sign-kid.css */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800;900&display=swap");
+
+.ttsk-page,
+.ttsk-page * { font-family:"Outfit",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
+
+/* show wallpaper */
+.ttsk-page{
+  padding:12px 12px 90px;
+  background: transparent !important;
+  min-height:100svh;
+  color:#1c2430;
+  max-width:720px;
+  margin:0 auto;
+}
+
+/* ---------- HEADER (left aligned like Sign-to-Text) ---------- */
+.ttsk-header{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;   /* <<< keeps title on the left */
+  gap:10px;
+  margin:8px 0 12px;
+}
+
+/* Back chip — blue like Sign-to-Text */
+.ttsk-back{
+  background:#D7ECFF !important;
+  border:1px solid #C7DCFF !important;
+  color:#25455e !important;
+  font-size:18px;
+  cursor:pointer;
+  padding:6px 10px;
+  border-radius:12px;
+  font-weight:900;
+  box-shadow:0 2px 0 rgba(37,69,94,.12);
+}
+
+/* Title fixed to the left, never centered by other styles */
+.ttsk-title{
+  margin:0 !important;
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:.2px;
+  text-align:left !important;
+  flex:0 1 auto !important;
+}
+
+/* ---------- CONTAINERS ---------- */
+body.kid .tts-card,
+body.kid .tts-panel{
+  background:#B8B8FF !important;
+  border:1px solid #E1E8F5;
+  border-radius:22px;
+  padding:12px;
+  margin-bottom:12px;
+  box-shadow:0 10px 26px rgba(34,58,90,.12);
+  color:#1c2430;
+}
+
+/* Input (pink w/ dotted outline) */
+.ttsk-inputWrap{ position:relative; }
+.ttsk-input{
+  width:100%; min-height:96px;
+  background:#FFE6E6 !important;
+  border:2px dotted #FFD9A1 !important;
+  border-radius:16px;
+  padding:10px; color:#1c2430;
+  box-shadow:none !important;
+}
+.ttsk-counter{ position:absolute; right:16px; bottom:12px; color:#9aa8b7; font-size:12px; }
+
+.ttsk-btnPrimary{
+  width:100%; margin-top:10px;
+  background:#FFA928; color:#1c2430; border:2px solid #FFA928;
+  border-radius:16px; padding:12px 14px; font-weight:900; cursor:pointer;
+  box-shadow:0 3px 0 rgba(37,69,94,.12);
+}
+
+/* Panel head */
+.ttsk-panelHead{ display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.ttsk-panelTitle{
+  font-weight:900; background:#F4F7FF; padding:8px 10px; border-radius:12px; border:1px solid #E1E8F5;
+}
+
+/* Stage (match textarea’s playful dotted style) */
+.ttsk-stage{
+  border:2px dotted #FFE6E6 !important;
+  border-radius:18px;
+  padding:10px;
+  min-height:180px;
+  display:flex; align-items:center; justify-content:center;
+  background:#FFFFFF;
+}
+.ttsk-video{ border-radius:14px; background:#00000008; }
+
+/* Controls */
+.ttsk-controls{ display:flex; gap:10px; margin-top:10px; }
+.ttsk-mini{
+  flex:1; border:2px solid #D9E6FF; border-radius:14px; background:#F3F7FF;
+  padding:10px 12px; font-weight:800; cursor:pointer; color:#1c2430;
+  box-shadow:0 2px 0 rgba(37,69,94,.12);
+}
+
+/* Meta/errors */
+.ttsk-meta{ display:flex; justify-content:space-between; gap:8px; margin-top:8px; color:#667085; font-size:12px; flex-wrap:wrap; }
+.ttsk-error{ color:#c0392b; }
+
+/* Footer chip */
+.ttsk-footer{ display:flex; justify-content:center; margin-top:10px; }
+.ttsk-footNote{
+  background:#B8B8FF;
+  color:#201433;
+  border:1px solid #AFAFEF;
+  border-radius:12px;
+  padding:8px 10px;
+  box-shadow:0 6px 18px rgba(34,58,90,.12);
+  font-size:12px;
+}
+
+/* ==== Kid-mode fixes for the normal TTS header ==== */
+
+/* Put the title on the LEFT (and keep the back chip on the left too) */
+body.kid .tts-header{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;   /* << no centering */
+  gap:10px;
+}
+
+/* Back chip: same blue as your Sign-to-Text page */
+body.kid .tts-header .back{
+  background:#D7ECFF !important;
+  border:1px solid #C7DCFF !important;
+  color:#25455e !important;
+  padding:6px 10px !important;
+  border-radius:12px !important;
+  box-shadow:0 2px 0 rgba(37,69,94,.12) !important;
+}
+
+/* The title should NOT stretch or center; keep it left-aligned */
+body.kid .tts-header h1{
+  width:auto !important;
+  max-width:none !important;
+  margin:0 0 0 6px !important;             /* small gap after the back chip */
+  text-align:left !important;
+  flex:0 0 auto !important;                 /* do not expand across the row */
+  order:2;                                  /* (default, just in case) */
+}

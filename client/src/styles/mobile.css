@@ -1,0 +1,117 @@
+/* Remove the giant home-page art on this route */
+.page.no-pad { background: #0b0f14 !important; }
+
+/* container */
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+.screen { flex: 1 1 auto; padding-bottom: 72px; display: flex; justify-content: center; }
+.phone-shell { width: min(100%, 430px); }
+
+/* camera */
+.camera-wrap {
+  position: relative;
+  width: 100%;
+  background: #0f141e;
+  overflow: hidden;
+  border-bottom: 1px solid #1f2a3e;
+}
+
+/* MOBILE: fill neatly, no face-zoom crop */
+@media (max-width: 520px) {
+  .camera-wrap { height: calc(100vh - 320px); min-height: 260px; max-height: 75vh; border-radius: 0 0 16px 16px; }
+  .cam-video, .cam-canvas { position:absolute; inset:0; width:100%; height:100%; object-fit: contain; background:#000; }
+}
+
+/* DESKTOP: tidy 16:9 box */
+@media (min-width: 521px) {
+  .camera-wrap { aspect-ratio: 16/9; border-radius: 16px; margin: 12px; max-height: 56vh; }
+  .cam-video, .cam-canvas { position:absolute; inset:0; width:100%; height:100%; object-fit: contain; background:#000; }
+}
+
+.cam-overlay {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(180deg, rgba(9,12,18,.6), rgba(9,12,18,.85));
+  color:#c8d2e6; font-weight:600; z-index: 2;
+}
+
+.paused .cam-video, .paused .cam-canvas { filter: grayscale(.3) blur(1px) brightness(.8); }
+
+/* bottom-left badge like your test */
+.pred-badge {
+  position:absolute; left:10px; bottom:10px; z-index:3;
+  background: rgba(10,14,22,.85);
+  border: 1px solid #2a3b58;
+  padding: 6px 10px; border-radius: 10px; font-size: 12px; color:#e6eefc;
+}
+
+/* panels / controls */
+.controls { padding-bottom: 8px; }
+.seg { display:flex; gap:4px; background:#0f1522; border:1px solid #26344a; border-radius:12px; padding:4px; margin:12px; }
+.seg.seg-small { margin-top: 4px; }
+.seg-btn { flex:1; background:transparent; border-radius:8px; padding:8px 10px; border:1px solid transparent; color:#e8eef6; }
+.seg-btn.active { background:#1a2740; border-color:#35507a; }
+
+.panel { margin: 12px; }
+.recognition { background:#0f1522; border:1px solid #23324a; border-radius:12px; padding:12px; }
+.rec-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.rec-actions .icon { background:#13203a; border:1px solid #25406f; border-radius:10px; padding:8px; }
+.rec-text { width:100%; border-radius:10px; padding:10px; background:#0a1020; color:#e8eef6; border:1px solid #22324a; }
+
+.row { display:flex; gap:8px; align-items:center; margin: 8px 12px; flex-wrap: wrap; }
+.row.compact { justify-content: space-between; }
+
+.btn { background:#172133; border:1px solid #2a3c58; border-radius:10px; padding:10px 14px; color:#e9f1ff; }
+.btn-ghost { background:transparent; }
+.btn-primary { background:#e84d4d; border-color:#e84d4d; color:#fff; }
+.btn.wide { width:100%; }
+
+.switch { display:flex; align-items:center; gap:8px; }
+.muted { color:#9bb0c9; }
+
+/* === Mobile app shell + bottom tab bar === */
+/* Put this at the END of client/src/styles/mobile.css */
+
+.mobile-shell{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* Main scrolling area; leave room for the fixed tabbar */
+.mobile-main{
+  flex:1 1 auto;
+  padding-bottom:88px;           /* <-- critical so content isn't covered */
+}
+
+/* Fixed bottom navigation */
+.tabbar{
+  position:fixed;
+  left:0; right:0; bottom:0;
+  height:64px;
+  padding:8px 16px;
+  background:#fff;
+  border-top:1px solid var(--line, #E6E6EF);
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  gap:8px;
+  z-index:60;                    /* above page content/canvas */
+}
+
+.tabbar .tab{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:12px;
+  color:#8e96a8;
+  text-decoration:none;
+}
+
+.tabbar .tab.active{ color:var(--ink, #1A1E2E); }
+
+.tabbar .tab svg{
+  width:22px;
+  height:22px;
+  margin:0 auto 4px;
+  display:block;
+}
+

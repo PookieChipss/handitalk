@@ -1,0 +1,3 @@
+/* client/src/index.css
+   Forward all global styles from the styles/ folder. */
+@import "./styles/index.css";

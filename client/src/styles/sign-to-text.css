@@ -1,0 +1,135 @@
+/* Load Outfit from Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap");
+
+/* ======= Camera stage aspect ratio token (Option A) ======= */
+:root{
+  --stt-ar: 4/3; /* change to 16/9 if you prefer widescreen */
+}
+
+/* Apply Outfit just to this screen to avoid affecting the whole app */
+.stt-root,
+.stt-root * {
+  font-family: "Outfit", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* ---------- Background (unchanged visually) ---------- */
+.stt-root {
+  padding: clamp(12px, 2.2vw, 24px);
+  min-height: 100dvh;
+  padding-bottom: env(safe-area-inset-bottom);
+  background:
+    linear-gradient(180deg, rgba(85,96,255,0.04) 0%, rgba(85,96,255,0.02) 28%, transparent 70%),
+    var(--app-bg, #F3F6FF);
+}
+/* Kid mode keeps its own wallpaper */
+body.kid .stt-root { background: transparent !important; }
+
+/* Top bar */
+.stt-top { display:flex; align-items:center; gap:10px; margin: 4px 0 10px; }
+.stt-back {
+  appearance:none; border:none; background:#f0f2ff; color:#4B5563;
+  padding:6px 10px; border-radius:10px; cursor:pointer;
+}
+.stt-title { margin:0; font-size: clamp(20px, 2.6vw, 24px); font-weight:700; }
+
+/* ---------- Card: widen on larger screens, keep centered ---------- */
+.stt-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: clamp(12px, 2.2vw, 20px);
+  width: min(100%, 720px);               /* was 420px */
+  margin: 0 auto calc(84px + env(safe-area-inset-bottom)); /* room for bottom nav */
+  box-shadow: var(--shadow-sm);
+}
+
+/* ======= Stage (video/canvas) — responsive & filled ======= */
+.stt-video-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--stt-ar);           /* drives height automatically */
+  border-radius: 12px;
+  border: 1px solid #D9DBF1;
+  background: #EEF0FF;
+  overflow: hidden;
+}
+.stt-video, .stt-canvas {
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit: cover;                      /* fill the box; no letterbox */
+  background: transparent;
+}
+.stt-paused .stt-video, .stt-paused .stt-canvas { filter: grayscale(.1) brightness(.96); }
+
+.stt-chip {
+  position: absolute; left: 10px; bottom: 10px;
+  background: #0E1625; color: #E6EEF6;
+  border: 1px solid #2A3B58;
+  padding: 6px 10px; border-radius: 10px;
+  font-size: 12px; line-height: 1;
+}
+
+/* Tabs */
+.stt-tabs { display:flex; gap:12px; margin-top: 10px; flex-wrap: wrap; }
+.stt-tab {
+  appearance:none; cursor:pointer;
+  padding:10px 14px; border-radius:12px; font-weight:700;
+  background:#F2F3FF; border:2px solid #D9DBF1; color: var(--ink);
+}
+.stt-tab.active { background: var(--primary); border-color: var(--primary); color: var(--primary-ink); }
+.stt-tab:disabled { opacity:.55; cursor: not-allowed; }
+
+/* Recognized panel */
+.stt-panel { margin-top: 12px; }
+.stt-panel-head { display:flex; align-items:center; justify-content:space-between; margin-bottom: 8px; gap:10px; flex-wrap: wrap; }
+.stt-panel-title { font-weight:700; }
+.stt-icons { display:flex; gap:8px; }
+.stt-icon {
+  appearance:none; border:1px solid #D9DBF1; background:#F6F7FF;
+  padding:8px; border-radius:10px; cursor:pointer;
+}
+.stt-textarea {
+  width:100%; min-height: clamp(110px, 18vh, 180px);
+  border:1px solid var(--line); border-radius:12px;
+  background:#FAFAFF; padding:10px; color: var(--ink);
+}
+
+/* Controls */
+.stt-row { display:flex; gap:10px; align-items:center; margin-top: 12px; flex-wrap:wrap; }
+.stt-status { color: var(--muted); font-size:12px; }
+
+.stt-btn {
+  appearance:none; border:1px solid #D9DBF1; background:#EEF0FF; color:#111827;
+  padding:10px 14px; border-radius:10px; font-weight:600; cursor:pointer;
+}
+.stt-btn--primary { background: var(--primary); border-color: var(--primary); color: var(--primary-ink); }
+.stt-btn--danger  { background: var(--danger);  border-color: var(--danger);  color: #fff; }
+
+/* Mirror + segmented */
+.stt-check { display:flex; align-items:center; gap:8px; margin: 10px 0 6px; font-size:14px; }
+
+.stt-seg {
+  display:flex; gap:8px;
+  background:#F2F4FF; border:1px solid #D9DBF1; border-radius:12px;
+  padding:4px; flex-wrap: wrap;
+}
+.stt-seg-btn {
+  flex:1 1 140px;                      /* allows wrapping on narrow screens */
+  padding:8px 10px; border-radius:8px;
+  border:1px solid transparent; background:transparent; font-weight:600; cursor:pointer;
+}
+.stt-seg-btn.active { background:#E3E7FF; border-color:#C8CEFF; }
+
+.stt-meta { margin-top:8px; color:#6B7280; font-size:12px; }
+
+/* ---------- Tablet / Desktop refinements (layout only) ---------- */
+@media (min-width: 768px){
+  .stt-card{ width: min(100%, 860px); }  /* give tablets more breathing room */
+}
+
+@media (min-width: 1024px){
+  .stt-card{ width: min(100%, 980px); }
+  /* no height override here—aspect-ratio controls stage size */
+}

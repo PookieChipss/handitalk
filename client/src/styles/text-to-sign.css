@@ -1,0 +1,144 @@
+/* client/src/styles/text-to-sign.css */
+:root{
+  --bg:#F7F7FB; --ink:#1A1E2E; --muted:#6B7280;
+  --card:#FFFFFF; --line:#E6E6EF;
+  --brand:#5B6BFF; --brand-ink:#FFF;
+}
+
+/* Page — Therapy-like gradient behind everything on this screen */
+body:not(.kid) .tts-page{
+  padding:12px 12px 90px;
+  min-height:100svh;
+  color:var(--ink);
+  max-width:720px;
+  margin:0 auto;
+  position: relative;
+}
+body:not(.kid) .tts-page::before{
+  content:"";
+  position: fixed;
+  inset:0;
+  z-index:-1;
+  background:
+    linear-gradient(180deg,
+      rgba(85,96,255,0.08) 0%,
+      rgba(85,96,255,0.05) 35%,
+      rgba(85,96,255,0.00) 75%
+    ),
+    var(--bg);
+}
+
+/* Header */
+.tts-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:8px 0 12px;
+}
+
+/* >>> Normal mode: back button WITHOUT any border/chip */
+.tts-header .back{
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  appearance:none;
+  font-size:22px;
+  cursor:pointer;
+  padding:4px 6px;              /* still a nice tap target */
+  border-radius:8px;            /* only for focus ring below */
+  color:var(--ink);
+}
+.tts-header .back:focus-visible{
+  outline:2px solid #AFC2FF;    /* accessible focus only */
+  outline-offset:2px;
+}
+
+.tts-header h1{margin:0;font-size:22px;font-weight:700}
+
+/* Cards */
+.tts-card,
+.tts-panel{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px;
+  margin-bottom:12px;
+  position:relative;
+  box-shadow:0 6px 18px rgba(20,30,80,.06);
+}
+
+/* Input */
+body:not(.kid) .tts-input{
+  width:100%;
+  min-height:92px;
+  border:1px solid var(--line) !important;
+  border-radius:10px !important;
+  background:#FAFAFF !important;
+  padding:10px;
+  color:var(--ink) !important;
+  box-shadow:none !important;
+}
+.tts-counter{
+  position:absolute; right:20px; bottom:62px;
+  color:#a2a8b7; font-size:12px;
+}
+
+.tts-btn{
+  width:100%; margin-top:10px;
+  background:var(--brand); color:var(--brand-ink);
+  border:none; border-radius:10px;
+  padding:12px 14px; font-weight:700; cursor:pointer;
+}
+
+/* Preview panel title */
+.tts-panel-title{
+  font-weight:700; margin-bottom:8px;
+  background:#EAE7FF; padding:8px 10px;
+  border-radius:10px; border:1px solid var(--line);
+}
+
+/* Stage */
+.tts-stage{
+  border:1px dashed var(--line);
+  border-radius:12px;
+  padding:10px;
+  min-height:180px;
+  display:flex; align-items:center; justify-content:center;
+  background:#fff;
+  pointer-events:auto;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.tts-placeholder{color:var(--muted);font-size:14px}
+.tts-player{width:100%;display:flex;justify-content:center}
+.tts-video{
+  width:100%; border:0; border-radius:12px;
+  aspect-ratio:16/9; background:#00000008; pointer-events:auto;
+}
+
+/* Transport */
+.tts-controls{display:flex;gap:10px;margin-top:10px}
+.tts-controls .mini{
+  flex:1; border:1px solid var(--line); border-radius:10px;
+  background:#EEF0FF; padding:10px 12px; font-weight:600; cursor:pointer;
+}
+
+/* Meta + errors */
+.tts-meta{
+  display:flex; justify-content:space-between; gap:8px; margin-top:8px;
+  color:#667085; font-size:12px; flex-wrap:wrap;
+}
+.tts-meta .source{opacity:.9}
+.tts-error{color:#c0392b}
+
+/* Footer attribution — in a card */
+.tts-footer{
+  margin-top:12px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:10px 12px;
+  color:var(--muted);
+  box-shadow:0 6px 18px rgba(20,30,80,.06);
+  font-size:12px;
+}

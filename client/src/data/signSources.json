@@ -1,0 +1,66 @@
+{
+  "hello": [{ "search": "asl hello sign", "credit": "Curated" }],
+  "hi": [{ "aliasOf": "hello" }],
+
+  "thank you": [{ "search": "asl thank you sign", "credit": "Curated" }],
+  "please": [{ "search": "asl please sign", "credit": "Curated" }],
+  "sorry": [{ "search": "asl sorry sign", "credit": "Curated" }],
+
+  "yes": [{ "search": "asl yes sign", "credit": "Curated" }],
+  "no": [{ "search": "asl no sign", "credit": "Curated" }],
+
+  "help": [{ "search": "asl help sign", "credit": "Curated" }],
+  "stop": [{ "search": "asl stop sign", "credit": "Curated" }],
+  "wait": [{ "search": "asl wait sign", "credit": "Curated" }],
+
+  "good morning": [{ "search": "asl good morning sign", "credit": "Curated" }],
+  "good night": [{ "search": "asl good night sign", "credit": "Curated" }],
+  "good afternoon": [{ "search": "asl good afternoon sign", "credit": "Curated" }],
+
+  "what is your name": [{ "search": "asl what is your name phrase", "credit": "Curated" }],
+  "nice to meet you": [{ "search": "asl nice to meet you phrase", "credit": "Curated" }],
+
+  "i love you": [{ "search": "asl ily sign", "credit": "Curated" }],
+
+  "where": [{ "search": "asl where sign", "credit": "Curated" }],
+  "who": [{ "search": "asl who sign", "credit": "Curated" }],
+  "what": [{ "search": "asl what sign", "credit": "Curated" }],
+  "when": [{ "search": "asl when sign", "credit": "Curated" }],
+  "why": [{ "search": "asl why sign", "credit": "Curated" }],
+  "how": [{ "search": "asl how sign", "credit": "Curated" }],
+
+  "toilet": [
+    { "search": "asl toilet sign", "credit": "Curated" },
+    { "search": "asl bathroom sign", "credit": "Curated" },
+    { "search": "asl restroom sign", "credit": "Curated" }
+  ],
+  "bathroom": [{ "aliasOf": "toilet" }],
+  "restroom": [{ "aliasOf": "toilet" }],
+  "wc": [{ "aliasOf": "toilet" }],
+
+  "i want to go toilet": [
+    { "search": "asl I want to go to the bathroom phrase", "credit": "Curated" },
+    { "search": "asl I need the bathroom", "credit": "Curated" }
+  ],
+
+  "hungry": [{ "search": "asl hungry sign", "credit": "Curated" }],
+  "thirsty": [{ "search": "asl thirsty sign", "credit": "Curated" }],
+  "water": [{ "search": "asl water sign", "credit": "Curated" }],
+  "eat": [{ "search": "asl eat sign", "credit": "Curated" }],
+
+  "doctor": [{ "search": "asl doctor sign", "credit": "Curated" }],
+  "hospital": [{ "search": "asl hospital sign", "credit": "Curated" }],
+  "police": [{ "search": "asl police sign", "credit": "Curated" }],
+  "emergency": [{ "search": "asl emergency sign", "credit": "Curated" }],
+
+  "school": [{ "search": "asl school sign", "credit": "Curated" }],
+  "bus": [{ "search": "asl bus sign", "credit": "Curated" }],
+  "train": [{ "search": "asl train sign", "credit": "Curated" }],
+  "house": [{ "search": "asl house sign", "credit": "Curated" }],
+
+  "mother": [{ "search": "asl mother sign", "credit": "Curated" }],
+  "father": [{ "search": "asl father sign", "credit": "Curated" }],
+  "brother": [{ "search": "asl brother sign", "credit": "Curated" }],
+  "sister": [{ "search": "asl sister sign", "credit": "Curated" }],
+  "friend": [{ "search": "asl friend sign", "credit": "Curated" }]
+}

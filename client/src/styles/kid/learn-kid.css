@@ -1,0 +1,94 @@
+/* =========================================================
+   Learn — Kid mode (reuse normal navbar, just recolor)
+   File: src/styles/kid/learn-kid.css
+   ========================================================= */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800;900&display=swap");
+
+:root { --kid-nav-purple: #9B5DE0; }  /* match bottom bar */
+
+/* Use Outfit everywhere on Learn in kid mode */
+body.kid .learn-page,
+body.kid .learn-page * {
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* Let the wallpaper show through */
+body.kid .learn-page { background: transparent !important; }
+body.kid .learn-main { background: transparent !important; }
+
+/* ---------- NAVBAR (FORCE SAME PURPLE AS BOTTOM) ---------- */
+/* Super-specific so it beats normal mode styles */
+body.kid .learn-page .learn-top {
+  background: var(--kid-nav-purple) !important;
+  color: #fff !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+
+  /* keep size consistent across pages */
+  height: 60px !important;
+  padding: 0 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+/* Title/brand text in white */
+body.kid .learn-page .learn-top .brand-name { 
+  color: #fff !important; 
+  font-weight: 900; 
+}
+
+/* Logo: don't invert/recolor unexpectedly */
+body.kid .learn-page .learn-top .brand-logo {
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}
+
+/* Buttons/icons (profile/back) in white, no backgrounds */
+body.kid .learn-page .learn-top .profile-btn,
+body.kid .learn-page .learn-top .profile-btn *,
+body.kid .learn-page .learn-top .btn,
+body.kid .learn-page .learn-top .btn * {
+  color: #fff !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+/* ---------- Category cards: solid playful colors (no white) ---------- */
+body.kid .cat-card{
+  border: none !important;
+  color: #fff !important;
+  text-align: center;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 22px rgba(76,45,140,.18) !important;
+}
+body.kid .cat-grid .cat-card:nth-child(1){ background:#5560FF !important; } /* Alphabet  */
+body.kid .cat-grid .cat-card:nth-child(2){ background:#6B5BFF !important; } /* Numbers   */
+body.kid .cat-grid .cat-card:nth-child(3){ background:#7E5EFF !important; } /* Phrases   */
+body.kid .cat-grid .cat-card:nth-child(4){ background:#8E63F8 !important; } /* Emotions  */
+body.kid .cat-grid .cat-card:nth-child(5){ background:#A06CF1 !important; } /* Greetings */
+body.kid .cat-grid .cat-card:nth-child(6){ background:#B275EC !important; } /* Foods     */
+
+body.kid .cat-card .icon-bubble{
+  background:#ffffff !important;
+  border:none !important;
+  color:#2a2a2a !important;
+}
+
+/* ---------- Continue-learning list: keep light look, tint CTA ---------- */
+body.kid .cont-card{
+  background:#ffffff !important;
+  border:1px solid rgba(0,0,0,.06) !important;
+  box-shadow: 0 6px 16px rgba(20,30,80,.10) !important;
+}
+body.kid .cont-open{
+  background:#8E63F8 !important;
+  color:#fff !important;
+  border:none !important;
+  box-shadow: 0 3px 10px rgba(142,99,248,.35) !important;
+}
+
+/* Headings readable on wallpaper */
+body.kid .learn-title,
+body.kid .learn-sub,
+body.kid .section-title { color:#1b1440 !important; }

@@ -1,0 +1,15 @@
+/* client/src/styles/index.css */
+
+/* Order matters: bring in base/theme first */
+@import "./theme.css";
+@import "./ui.css";
+@import "./mobile.css";
+
+/* Feature/page styles */
+@import "./auth-forms.css";
+@import "./home.css";
+@import "./learn.css";
+@import "./learn-category.css";
+@import "./sign.css";
+@import "./sign-to-text.css";
+@import "./text-to-sign.css";

@@ -1,0 +1,150 @@
+/* ================================
+   Progress — Kid-only overrides
+   ================================ */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&display=swap");
+
+/* Kid palette */
+:root {
+  --kid-purple: #9B5DE0;    /* header */
+  --kid-pink:   #D68AF3;    /* card tint */
+  --kid-yellow: #FBE58F;    /* mini/card tint */
+  --kid-ink:    #0F172A;
+  --kid-ink2:   #5b6a77;
+  --kid-orange: #FFA928;    /* progress */
+}
+
+/* 0) Typography like your other kid pages */
+body.kid .prog-page,
+body.kid .prog-page * {
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* 1) Wallpaper visible + purple header with outline-only profile icon */
+body.kid .prog-page,
+body.kid .prog-main { background: transparent !important; }
+
+body.kid .prog-page .learn-top {
+  background: var(--kid-purple) !important;
+  color: #fff !important;
+  border-bottom: 1px solid rgba(0,0,0,.06) !important;
+}
+body.kid .prog-page .learn-top .brand-name,
+body.kid .prog-page .learn-top .brand * { color:#fff !important; }
+body.kid .prog-page .learn-top .profile-btn {
+  background: transparent !important;
+  border: 0 !important;
+  color: #fff !important;
+}
+body.kid .prog-page .learn-top .profile-btn svg {
+  fill: none !important;         /* outline only */
+  stroke: #fff !important;
+  color: #fff !important;
+}
+
+/* 2) Headings sizing/spacing to match other kid screens */
+body.kid .prog-page .prog-title {
+  margin: 4px 0 0 !important;
+  font-size: 24px !important;
+  font-weight: 900 !important;
+  color: var(--kid-ink) !important;
+}
+body.kid .prog-page .prog-sub {
+  margin-top: 0 !important;
+  color: var(--kid-ink2) !important;
+}
+body.kid .prog-page .list-head,
+body.kid .prog-page .card-title { color: var(--kid-ink) !important; }
+
+/* 3) DARKER kid card tints (so text stays readable on wallpaper) */
+body.kid .prog-page .kpi-row {
+  background: rgba(214,138,243,.45) !important;  /* darker pink wash */
+  border-color: rgba(214,138,243,.65) !important;
+}
+body.kid .prog-page .kpi {
+  background: rgba(251,229,143,.55) !important;  /* deeper yellow tile */
+  border-color: rgba(251,229,143,.75) !important;
+}
+
+body.kid .prog-page .card,
+body.kid .prog-page .list-card {
+  background: rgba(214,138,243,.38) !important;  /* darken from .18 → .38 */
+  border-color: rgba(214,138,243,.65) !important;
+  box-shadow: 0 10px 22px rgba(34,58,90,.12) !important;
+}
+
+body.kid .prog-page .mini {
+  background: rgba(251,229,143,.40) !important;
+  border-color: rgba(251,229,143,.70) !important;
+}
+body.kid .prog-page .goal-chip {
+  background: rgba(155,93,224,.22) !important;
+  border-color: rgba(155,93,224,.45) !important;
+  color: #1d2540 !important;
+}
+
+/* icons inside small tiles */
+body.kid .prog-page .kpi-ico,
+body.kid .prog-page .mini-ico {
+  background: #fff !important;
+  border: 1px solid rgba(0,0,0,.08) !important;
+  color: #7a4ce0 !important;
+}
+
+/* 4) Orange progress everywhere */
+body.kid .prog-page .row-bar {
+  background: #FFECC3 !important;
+  border-color: #FFDFA8 !important;
+}
+body.kid .prog-page .row-bar i { background: var(--kid-orange) !important; }
+
+/* weekly ring → orange */
+body.kid .prog-page .ring {
+  background:
+    radial-gradient(#fff 56%, transparent 57%),
+    conic-gradient(var(--kid-orange) var(--pct), #FFE6BF 0) !important;
+  box-shadow: inset 0 0 0 2px #FFDFA8, 0 6px 14px rgba(34,58,90,.10) !important;
+}
+
+/* 5) Secondary text tone */
+body.kid .prog-page .empty,
+body.kid .prog-page .row-sub,
+body.kid .prog-page .mini-sub { color: var(--kid-ink2) !important; }
+
+/* ==== Progress/Kid: make containers darker + opaque (no transparency) ==== */
+/* Only applies on the kid Progress screen */
+body.kid .prog-page .kpi-row {
+  background: #DCA9F5 !important;      /* solid lilac */
+  border-color: #B978E5 !important;
+}
+
+body.kid .prog-page .kpi {
+  background: #F7E08F !important;      /* solid warm yellow */
+  border-color: #E6C96A !important;
+}
+
+body.kid .prog-page .card,
+body.kid .prog-page .list-card {
+  background: #E4B4F6 !important;      /* darker purple card, fully opaque */
+  border-color: #B978E5 !important;
+  box-shadow: 0 10px 22px rgba(34,58,90,.12) !important;
+}
+
+body.kid .prog-page .mini {
+  background: #F8E6A6 !important;      /* solid yellow mini tiles */
+  border-color: #E6C96A !important;
+}
+
+/* Rows inside list cards */
+body.kid .prog-page .row-btn {
+  background: #F8F0C7 !important;      /* solid cream */
+  border-color: #E6C96A !important;
+}
+
+/* Keep text colors readable on the darker cards */
+body.kid .prog-page .list-head,
+body.kid .prog-page .card-title,
+body.kid .prog-page .row-title,
+body.kid .prog-page .prog-title { color: #0F172A !important; }
+
+body.kid .prog-page .row-sub,
+body.kid .prog-page .mini-sub { color: #5b6a77 !important; }

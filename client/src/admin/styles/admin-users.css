@@ -1,0 +1,73 @@
+/* User Manager – table layout */
+.umx { padding: 14px 14px 84px; }
+
+.umx-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 2px 12px;
+}
+.umx-head h2 { margin: 0; font-weight: 800; letter-spacing: .2px; }
+.umx-head p  { margin: 4px 0 0; color: #6b7280; font-size: 13px; }
+.grow { flex: 1; }
+
+/* Inputs & buttons */
+.inp {
+  border: 1px solid #e5e7eb; background: #fff; border-radius: 12px;
+  padding: 10px 12px; font-size: 14px; outline: none;
+}
+.inp:focus { border-color: #bfc7ff; box-shadow: 0 0 0 3px rgba(79,70,229,.15); }
+.btn {
+  border: 1px solid #e5e7eb; background: #0f172a; color: #fff;
+  padding: 10px 14px; border-radius: 12px; font-weight: 700; cursor: pointer;
+}
+.btn:hover { filter: brightness(1.06); }
+.btn:disabled { opacity: .55; cursor: not-allowed; }
+.btn.btn-danger { background: #fee2e2; color: #7f1d1d; border-color: #fecaca; }
+.btn.btn-danger:hover { background: #fecaca; }
+
+/* Table */
+.table-wrap { overflow: auto; border-top: 1px solid #f1f5f9; }
+.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tbl thead th {
+  position: sticky; top: 0; background: #fbfdff; z-index: 1;
+  text-align: left; padding: 10px 12px; border-bottom: 1px solid #eef2f7;
+}
+.tbl td { padding: 10px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+.tbl tbody tr:nth-child(odd) { background: #fcfcff; }
+
+.mono  { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-size: 13px; }
+.small { font-size: 12px; }
+.muted { color: #6b7280; }
+.center { text-align: center; }
+
+.th-role, .col-role { width: 120px; }
+
+/* Admin row highlight */
+.row-admin {
+  background: #fffdfa !important;
+  border-left: 4px solid #fbbf24;   /* amber accent */
+}
+.name-wrap { display: flex; align-items: center; gap: 8px; }
+.i-lock { font-size: 14px; line-height: 1; }
+
+/* Modal */
+.modal {
+  position: fixed; inset: 0; background: rgba(15,23,42,.35);
+  display: grid; place-items: center; z-index: 40;
+}
+.modal-card {
+  width: min(560px, 92vw); background: #fff; border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(16,24,40,.18); padding: 18px;
+}
+.modal-card h3 { margin: 0 0 12px; font-weight: 800; }
+.modal-card .form { display: grid; gap: 8px; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px; }
+
+/* Safety guard: NEVER hide role text */
+.col-role, .col-role * {
+  color: #111827 !important;
+  font-size: 13px !important;
+  text-transform: none !important;
+  letter-spacing: .2px !important;
+}

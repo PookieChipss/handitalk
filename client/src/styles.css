@@ -1,0 +1,70 @@
+/* src/styles.css */
+:root {
+  --bg: #0b0f14;
+  --card: #0f1624;
+  --ink: #e8eef6;
+  --muted: #9fb0c4;
+  --line: #1f2a3a;
+  --accent: #ff5a60;
+  --primary: #3b82f6;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: system-ui, Inter, Segoe UI, Roboto, Arial; }
+
+.page { padding: 16px; display: grid; gap: 12px; }
+.page.center { display: grid; place-items: center; }
+
+.title { margin: 0 0 4px; font-size: 20px; }
+
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  background: #000;
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9; /* responsive full-width */
+}
+.video, .canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover;
+}
+.badge {
+  position: absolute; left: 10px; bottom: 10px;
+  background: #101a2ae6; border: 1px solid var(--line);
+  border-radius: 10px; padding: 6px 8px; font-size: 12px; color: var(--muted);
+}
+.badge.corner { left: auto; right: 10px; }
+
+.controls, .actions {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  max-width: 1000px; margin: 0 auto; padding: 4px 2px;
+}
+.toggle { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); }
+
+.btn {
+  background: #142038; color: var(--ink); border: 1px solid var(--line);
+  padding: 10px 12px; border-radius: 10px; cursor: pointer;
+}
+.btn.primary { background: var(--primary); border-color: #1a64e8; }
+.btn.danger { background: var(--accent); border-color: #e04349; }
+
+.out { max-width: 1000px; margin: 0 auto; display: grid; gap: 6px; }
+.out-title { color: var(--muted); font-size: 13px; }
+.out-text {
+  width: 100%; min-height: 110px; resize: vertical;
+  background: var(--card); color: var(--ink);
+  border: 1px dashed var(--line); border-radius: 12px; padding: 10px;
+}
+
+@media (min-width: 900px) {
+  .page { grid-template-columns: 1fr 420px; align-items: start; gap: 16px; }
+  .title { grid-column: 1 / -1; }
+  .stage { grid-column: 1; }
+  .controls, .actions, .out { grid-column: 1 / -1; }
+}
+

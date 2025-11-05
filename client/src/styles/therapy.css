@@ -1,0 +1,206 @@
+/* ===== Therapy — Title card + unique daily goal ===== */
+
+/* Shared nav variables (top bar uses these) */
+:root{
+  --nav-bg:   #ffffff;
+  --nav-ink:  #111827;
+  --nav-line: #E6E8F3;
+}
+
+/* Page container: remove narrow cap, add safe-area padding */
+.therapy-page {
+  width: min(100%, 1200px);            /* was max-width: 520px */
+  margin: 0 auto;
+  min-height: 100dvh;
+  padding-bottom: calc(env(safe-area-inset-bottom) + 72px);
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--app-bg, #F3F6FF);
+}
+
+/* Top bar (kept same look) */
+.learn-top {
+  position: sticky; top: 0; z-index: 2;
+  background: var(--nav-bg);
+  color: var(--nav-ink);
+  border-bottom: 1px solid var(--nav-line);
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 12px 16px;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+  transition: box-shadow .2s ease;
+}
+.learn-top:is(:hover, :focus-within) { box-shadow: 0 2px 10px rgba(15,23,42,0.06); }
+.brand { display:flex; align-items:center; gap:8px; font-weight:800; font-size:18px; }
+
+.brand-logo {
+  width: 36px !important;
+  height: 36px !important;
+  object-fit: contain;
+  image-rendering: auto;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.brand-name { letter-spacing:.2px; }
+.profile-btn { all:unset; cursor:pointer; color:var(--nav-ink); padding:6px; border-radius:8px; }
+
+/* Main layout with a super-soft gradient (fluid padding/gap) */
+.therapy-main.calm {
+  padding: clamp(14px, 2vw, 22px) clamp(12px, 2.2vw, 20px) clamp(24px, 3vw, 32px);
+  display: grid;
+  gap: clamp(14px, 2vw, 20px);
+  align-content: start;
+  background: linear-gradient(180deg, rgba(85,96,255,0.04) 0%, rgba(85,96,255,0.02) 28%, transparent 70%);
+  border-radius: 0 0 16px 16px;
+}
+.t-stack { display: grid; gap: clamp(14px, 2vw, 20px); }
+
+/* Title card */
+.t-titlecard { padding: 6px 4px 0; }
+.t-title { margin: 4px 0 2px; font-size: clamp(20px, 2.6vw, 24px); font-weight: 800; color:#0F172A; }
+.t-sub   { margin: 0; color:#6B7280; font-size: 14px; }
+
+/* Cards */
+.t-card {
+  background: #fff;
+  border: 1px solid #E6E8F3;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(20, 30, 80, 0.07);
+  padding: clamp(12px, 2vw, 16px);
+  width: min(100%, 980px);             /* center & allow wider on tablets/desktop */
+  margin-inline: auto;
+}
+
+/* Daily goal */
+.t-goal-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; gap: 8px; flex-wrap: wrap; }
+.t-goal-title, .t-goal-count { font-weight: 800; color: #0F172A; }
+.t-goal-bar { height:10px; border-radius:999px; background:#E9EDFF; border:1px solid #D7DEFF; overflow:hidden; }
+.t-goal-fill { height:100%; width:0%; background: #5560FF; transition: width .5s cubic-bezier(.22,.61,.36,1); }
+.t-goal-sub { margin-top:6px; color:#6B7280; font-size:12px; }
+
+/* Setup (bare = no white container) */
+.t-setup { display:grid; gap: 12px; }
+.t-setup.bare { background: transparent; border: none; box-shadow: none; padding: 0; }
+.t-row-head { display:flex; align-items:center; justify-content:space-between; gap: 10px; flex-wrap: wrap; }
+.t-row-title { font-weight: 800; color: #0F172A; }
+
+/* Icon button for "How scoring works" */
+.icon-btn {
+  all: unset; cursor: pointer; display: grid; place-items: center;
+  width: 34px; height: 34px; border-radius: 10px;
+  color: #3845ff; border: 1px solid #E0E7FF; background: #EEF2FF;
+  transition: transform .06s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.icon-btn:hover { background:#E6ECFF; border-color:#D6DFFF; box-shadow: 0 4px 10px rgba(56,69,255,.10); }
+.icon-btn:active { transform: scale(0.97); }
+
+/* Mode grid — remain two, but scale item padding on large screens */
+.t-mode-grid.two { display:grid; grid-template-columns: repeat(2, 1fr); gap:10px; }
+
+.t-mode-btn{
+  display:grid;
+  grid-template-rows: auto auto auto;
+  place-items: center;
+  text-align:center;
+  border:1px solid #E6E8F3;
+  border-radius:12px;
+  background:#F7F9FF;                /* UNSELECTED */
+  padding: clamp(12px, 2vw, 16px) clamp(10px, 1.6vw, 14px);
+  cursor:pointer;
+  transition: transform .06s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.t-mode-btn:hover { transform: translateY(-1px); }
+.t-mode-btn:active { transform: scale(0.98); }
+.t-mode-btn.on{
+  background:#fff;                   /* SELECTED */
+  border-color:#CFE0FF;
+  box-shadow: inset 0 0 0 2px rgba(85,96,255,.18), 0 4px 14px rgba(80,90,255,.10);
+}
+
+.t-mode-ico{
+  width:36px; height:36px;
+  display:grid; place-items:center;
+  border-radius:10px;
+  background:#EEF2FF;
+  color:#3B4BFF;
+  font-size:18px;
+}
+.t-mode-name{ margin-top:8px; font-weight:800; color:#0F172A; }
+.t-mode-desc{ color:#6B7280; font-size:12px; margin-top:4px; }
+
+/* Banner + CTA */
+.t-banner {
+  display:flex; gap:10px; align-items:center;
+  background: linear-gradient(180deg, #EEF2FF, #F4F6FF);
+  border:1px solid #E0E7FF; padding:10px 12px; border-radius:12px;
+}
+.t-banner-ico { width:32px; height:32px; display:grid; place-items:center; border-radius:10px; background:#E7E7FF; }
+.t-banner-title { font-weight:800; color:#0F172A; }
+.t-banner-sub { color:#64748B; font-size:12px; }
+
+/* Big CTA scales to container width */
+.t-cta.big {
+  display:block; text-align:center; height: 48px; line-height:48px;
+  background:#5560FF; color:#fff; font-weight:800; border-radius:12px;
+  box-shadow: 0 8px 18px rgba(85, 96, 255, 0.25);
+  transition: transform .08s ease, box-shadow .2s ease;
+  width: 100%;
+}
+.t-cta.big:hover { box-shadow: 0 10px 22px rgba(85,96,255,0.28); transform: translateY(-1px); }
+.t-cta.big:active { transform: translateY(0); }
+
+/* Last practice */
+.t-last-card { display:grid; gap:10px; }
+.t-last-head { display:flex; align-items:center; justify-content:space-between; gap: 10px; flex-wrap: wrap; }
+.t-last-title { font-weight:800; color:#0F172A; }
+.t-badge { background:#EEF2FF; color:#3B4BFF; border:1px solid #E0E7FF; border-radius:999px; padding:4px 10px; font-weight:800; font-size:12px; }
+.t-last-grid { display:grid; grid-template-columns: 1fr 1fr; gap:8px; }
+.t-last-grid .kv { display:flex; align-items:center; justify-content:space-between; background:#F8FAFF; border:1px solid #E6E8F3; border-radius:10px; padding:8px 10px; }
+.t-last-grid .kv span { color:#6B7280; font-size:12px; }
+.t-last-grid .kv b { color:#0F172A; }
+.t-last-grid .kv .chip {
+  background:#F2F4FF; border:1px solid #E3E7FF; padding:2px 8px; border-radius:10px; font-weight:800;
+}
+
+.t-ghost { display:inline-block; padding:10px 12px; border:1px solid #E6E8E3; border-radius:12px; font-weight:800; color:#4F5DFF; background:#fff; text-decoration:none; }
+
+/* Mic note (optional) */
+.t-mic-note { display:flex; align-items:center; gap:8px; color:#6B7280; font-size:13px; padding: 0 2px 10px 2px; }
+.t-mic-note .dot { width:8px; height:8px; border-radius:999px; background:#cbd5e1; }
+.t-mic-note .dot.good { background:#10b981; }
+.t-mic-note .dot.quiet { background:#f59e0b; }
+.t-mic-note .dot.noisy { background:#ef4444; }
+
+/* Bottom sheet */
+.t-sheet { position: fixed; inset: 0; background: rgba(15, 23, 42, .28); display:grid; place-items:end center; z-index: 50; }
+.t-sheet-card {
+  width: 100%;
+  max-width: 680px;                     /* was 520px; better on tablets */
+  background:#fff; color:#0F172A;
+  border-top-left-radius: 18px; border-top-right-radius: 18px;
+  box-shadow: 0 30px 60px rgba(0,0,0,.25);
+  padding: 16px; display: grid; gap: 12px;
+}
+.t-sheet-head { display:flex; align-items:center; justify-content:space-between; }
+.t-sheet-title { font-weight:800; font-size:16px; }
+.t-x { all:unset; cursor:pointer; font-weight:800; font-size:16px; }
+.t-sheet-body { color:#0F172A; }
+.t-ul { margin: 6px 0 8px 18px; }
+.t-ul li { margin: 2px 0; }
+.t-sheet-actions { display:flex; justify-content:flex-end; }
+.t-pill { min-width: 100px; height: 40px; border-radius: 12px; border: 1px solid #E6E8F3; background:#fff; font-weight:800; cursor:pointer; }
+
+/* Keep two columns on larger screens too */
+@media (min-width: 480px){
+  .t-mode-grid.two { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Tablet/desktop niceties (no visual changes, only spacing/width) */
+@media (min-width: 768px){
+  .t-last-grid { column-gap: 12px; }
+}
+
+/* Focus-visible for accessibility */
+:where(button, a, .t-mode-btn, .icon-btn):focus-visible {
+  outline: 2px solid #5560FF; outline-offset: 2px; border-radius: 12px;
+}
